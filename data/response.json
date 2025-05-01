@@ -1,0 +1,349 @@
+{
+    "tomato_bacterial_spot": {
+        "description": "Bacterial spot is a serious disease of tomatoes caused by Xanthomonas bacteria. It produces dark, raised spots on leaves, stems, and fruits, leading to defoliation and reduced yield.",
+        "prevention": [
+            "Use disease-free seeds and transplants",
+            "Practice crop rotation with non-host plants",
+            "Avoid overhead irrigation",
+            "Maintain proper plant spacing for good air circulation",
+            "Keep the field clean and free from plant debris"
+        ],
+        "treatment": [
+            "Apply copper-based bactericides early in the season",
+            "Remove and destroy infected plants",
+            "Prune affected leaves and improve air circulation",
+            "Use streptomycin sprays where legally permitted"
+        ]
+    },
+    "tomato_early_blight": {
+        "description": "Early blight, caused by Alternaria solani, is characterized by dark brown spots with concentric rings on older leaves. The disease can cause significant defoliation and reduce fruit yield.",
+        "prevention": [
+            "Rotate crops with non-solanaceous plants",
+            "Improve air circulation between plants",
+            "Avoid overhead irrigation",
+            "Remove and destroy infected plant debris",
+            "Use disease-resistant varieties when available"
+        ],
+        "treatment": [
+            "Apply fungicides containing chlorothalonil or mancozeb",
+            "Remove infected leaves promptly",
+            "Maintain proper nutrition to help plants resist infection",
+            "Apply organic fungicides like copper or sulfur-based products"
+        ]
+    },
+    "tomato_late_blight": {
+        "description": "Late blight, caused by Phytophthora infestans, is a devastating disease that causes large, dark brown patches on leaves and can quickly kill entire plants. It's infamous for causing the Irish Potato Famine.",
+        "prevention": [
+            "Plant resistant varieties",
+            "Avoid overhead irrigation and wet foliage",
+            "Space plants properly for good air circulation",
+            "Monitor weather conditions for disease-favorable periods",
+            "Remove volunteer tomato and potato plants"
+        ],
+        "treatment": [
+            "Apply protective fungicides before disease onset",
+            "Remove and destroy infected plants immediately",
+            "Use systemic fungicides during high-risk periods",
+            "Harvest remaining healthy fruit if disease is present"
+        ]
+    },
+    "tomato_leaf_mold": {
+        "description": "Leaf mold, caused by Passalora fulva, primarily affects tomatoes in greenhouses or high-humidity conditions. It appears as pale green to yellow spots on upper leaf surfaces and olive-green spores on lower surfaces.",
+        "prevention": [
+            "Maintain greenhouse humidity below 85%",
+            "Improve air circulation with fans",
+            "Space plants adequately",
+            "Remove lower leaves to improve air flow",
+            "Use resistant varieties in greenhouse production"
+        ],
+        "treatment": [
+            "Apply appropriate fungicides at first sign of disease",
+            "Remove and destroy infected leaves",
+            "Reduce humidity through ventilation",
+            "Avoid wetting leaves when watering"
+        ]
+    },
+    "tomato_septoria_leaf_spot": {
+        "description": "Septoria leaf spot is caused by Septoria lycopersici and is characterized by numerous small, circular spots with dark borders and light centers on leaves. It can cause severe defoliation.",
+        "prevention": [
+            "Practice crop rotation",
+            "Remove old plant debris",
+            "Avoid overhead irrigation",
+            "Space plants for good air circulation",
+            "Mulch around plants to prevent soil splash"
+        ],
+        "treatment": [
+            "Apply fungicides at first sign of disease",
+            "Remove infected leaves",
+            "Improve air circulation",
+            "Continue treatments every 7-10 days in wet weather"
+        ]
+    },
+    "tomato_spider_mites": {
+        "description": "Spider mites are tiny arachnids that cause stippling on leaves, leading to yellowing and death of leaves. They thrive in hot, dry conditions and can rapidly reproduce.",
+        "prevention": [
+            "Maintain proper humidity",
+            "Regular inspection of plants",
+            "Keep plants well-watered",
+            "Introduce beneficial predatory insects",
+            "Avoid excessive nitrogen fertilization"
+        ],
+        "treatment": [
+            "Apply insecticidal soaps or neem oil",
+            "Use miticides if infestation is severe",
+            "Increase humidity through misting",
+            "Remove heavily infested leaves"
+        ]
+    },
+    "tomato_target_spot": {
+        "description": "Target spot, caused by Corynespora cassiicola, produces circular brown spots with concentric rings on leaves, stems, and fruits. It can cause significant yield loss in warm, humid conditions.",
+        "prevention": [
+            "Use disease-free seeds",
+            "Practice crop rotation",
+            "Maintain proper plant spacing",
+            "Avoid overhead irrigation",
+            "Remove crop debris after harvest"
+        ],
+        "treatment": [
+            "Apply fungicides preventively",
+            "Remove infected plant parts",
+            "Improve air circulation",
+            "Maintain proper nutrition"
+        ]
+    },
+    "tomato_mosaic_virus": {
+        "description": "Tomato mosaic virus causes mottled and distorted leaves, stunted growth, and reduced yield. It can be transmitted through seeds, tools, and human handling.",
+        "prevention": [
+            "Use virus-free seeds and transplants",
+            "Disinfect tools between plants",
+            "Control weed hosts",
+            "Wash hands after handling tobacco products",
+            "Remove and destroy infected plants"
+        ],
+        "treatment": [
+            "No cure available - remove and destroy infected plants",
+            "Control insect vectors",
+            "Maintain good sanitation practices",
+            "Plant resistant varieties in future seasons"
+        ]
+    },
+    "tomato_healthy": {
+        "description": "Healthy tomato plants show vigorous growth, deep green foliage, and normal fruit development without any signs of disease or pest damage.",
+        "prevention": [
+            "Maintain proper watering schedule",
+            "Provide balanced fertilization",
+            "Ensure good air circulation",
+            "Regular monitoring for early detection of problems",
+            "Practice crop rotation"
+        ],
+        "treatment": [
+            "No treatment needed",
+            "Continue regular maintenance",
+            "Monitor for any signs of stress or disease",
+            "Maintain optimal growing conditions"
+        ]
+    },
+    "pepper_bacterial_spot": {
+        "description": "Bacterial spot on peppers, caused by Xanthomonas species, creates water-soaked spots on leaves and fruits that eventually become brown and necrotic.",
+        "prevention": [
+            "Use disease-free seeds",
+            "Avoid overhead irrigation",
+            "Practice crop rotation",
+            "Maintain proper plant spacing",
+            "Remove infected plant debris"
+        ],
+        "treatment": [
+            "Apply copper-based bactericides",
+            "Remove infected plants",
+            "Improve air circulation",
+            "Avoid working with wet plants"
+        ]
+    },
+    "apple_scab": {
+        "description": "Apple scab, caused by Venturia inaequalis fungus, is one of the most serious diseases of apple trees. It causes dark, scab-like lesions on leaves and fruits, significantly reducing fruit quality and yield.",
+        "prevention": [
+            "Plant resistant apple varieties",
+            "Maintain good air circulation through proper pruning",
+            "Remove and destroy fallen leaves in autumn",
+            "Apply preventive fungicides before bud break",
+            "Maintain proper tree spacing in orchards"
+        ],
+        "treatment": [
+            "Apply fungicides at 7-10 day intervals during wet periods",
+            "Remove and destroy infected leaves and fruits",
+            "Prune to improve air circulation",
+            "Use systemic fungicides for better control",
+            "Monitor and maintain fungicide schedule until harvest"
+        ]
+    },
+    "apple_black_rot": {
+        "description": "Black rot, caused by Botryosphaeria obtusa fungus, affects apple trees causing leaf spots, fruit rot, and branch cankers. The disease can lead to significant crop loss and tree damage.",
+        "prevention": [
+            "Remove dead or diseased wood during winter pruning",
+            "Maintain proper orchard sanitation",
+            "Remove mummified fruits from trees",
+            "Ensure adequate tree spacing",
+            "Apply protective fungicides during bud break"
+        ],
+        "treatment": [
+            "Prune out cankers and dead wood",
+            "Apply fungicides during growing season",
+            "Remove infected fruits promptly",
+            "Treat pruning wounds with fungicide",
+            "Maintain good air circulation"
+        ]
+    },
+    "apple_cedar_rust": {
+        "description": "Cedar apple rust, caused by Gymnosporangium juniperi-virginianae, is a fungal disease requiring both apple trees and cedar trees to complete its life cycle. It causes bright orange spots on leaves and fruits.",
+        "prevention": [
+            "Remove nearby cedar trees if possible",
+            "Plant resistant apple varieties",
+            "Apply preventive fungicides in spring",
+            "Monitor weather conditions for infection periods",
+            "Maintain proper tree spacing"
+        ],
+        "treatment": [
+            "Apply fungicides when orange spots appear",
+            "Remove heavily infected leaves",
+            "Protect new growth with fungicides",
+            "Remove galls from cedar trees within vicinity",
+            "Continue fungicide applications in wet weather"
+        ]
+    },
+    "potato_early_blight": {
+        "description": "Early blight in potatoes, caused by Alternaria solani, produces dark brown concentric rings on leaves. It typically starts on older leaves and can significantly reduce tuber yield.",
+        "prevention": [
+            "Use certified disease-free seed potatoes",
+            "Practice crop rotation (3-4 years)",
+            "Maintain proper plant spacing",
+            "Control soil moisture through proper irrigation",
+            "Remove volunteer potato plants"
+        ],
+        "treatment": [
+            "Apply approved fungicides at regular intervals",
+            "Remove infected leaves and plants",
+            "Improve air circulation",
+            "Maintain proper fertility levels",
+            "Consider early harvest if infection is severe"
+        ]
+    },
+    "potato_late_blight": {
+        "description": "Late blight, caused by Phytophthora infestans, is a devastating potato disease that can destroy entire fields within days under favorable conditions. It causes dark, water-soaked lesions on leaves and tubers.",
+        "prevention": [
+            "Plant certified disease-free seed potatoes",
+            "Monitor weather conditions",
+            "Use resistant varieties",
+            "Destroy volunteer potatoes",
+            "Maintain good field drainage"
+        ],
+        "treatment": [
+            "Apply systemic fungicides immediately upon detection",
+            "Remove and destroy infected plants",
+            "Increase spray frequency during wet weather",
+            "Harvest tubers early if disease threatens",
+            "Store tubers in cool, dry conditions"
+        ]
+    },
+    "grape_black_rot": {
+        "description": "Black rot, caused by Guignardia bidwellii, is a serious fungal disease of grapes that affects leaves, shoots, and berries. Infected berries become mummified and can harbor the pathogen over winter.",
+        "prevention": [
+            "Remove mummified berries and infected leaves",
+            "Prune to improve air circulation",
+            "Train vines for optimal sun exposure",
+            "Practice proper canopy management",
+            "Apply dormant sprays in early spring"
+        ],
+        "treatment": [
+            "Apply fungicides at early shoot growth",
+            "Continue treatments through fruit development",
+            "Remove infected clusters promptly",
+            "Maintain open canopy",
+            "Clean up fallen debris regularly"
+        ]
+    },
+    "grape_esca": {
+        "description": "Esca (black measles) is a complex disease caused by multiple fungi affecting the woody tissue of grapevines. It causes leaf striping, fruit spotting, and eventual vine decline.",
+        "prevention": [
+            "Use clean pruning tools",
+            "Avoid pruning in wet weather",
+            "Remove infected vines",
+            "Maintain vine vigor",
+            "Protect pruning wounds"
+        ],
+        "treatment": [
+            "Remove and destroy infected vines",
+            "Apply wound protectants after pruning",
+            "Maintain balanced irrigation",
+            "Support plant health with proper nutrition",
+            "Consider vine replacement if severely affected"
+        ]
+    },
+    "corn_common_rust": {
+        "description": "Common rust, caused by Puccinia sorghi, produces small, circular to elongated brown pustules on corn leaves. Heavy infections can reduce yield and grain quality.",
+        "prevention": [
+            "Plant resistant hybrids",
+            "Monitor fields regularly",
+            "Plant early in the season",
+            "Maintain proper plant spacing",
+            "Control volunteer corn"
+        ],
+        "treatment": [
+            "Apply fungicides when rust is first detected",
+            "Continue monitoring disease progression",
+            "Time fungicide applications with weather conditions",
+            "Maintain plant health through proper nutrition",
+            "Consider early harvest if severe"
+        ]
+    },
+    "corn_northern_leaf_blight": {
+        "description": "Northern leaf blight, caused by Exserohilum turcicum, produces long, cigar-shaped gray-green to brown lesions on corn leaves. It can cause significant yield loss in susceptible hybrids.",
+        "prevention": [
+            "Plant resistant hybrids",
+            "Rotate crops",
+            "Plow under crop residue",
+            "Maintain balanced soil fertility",
+            "Avoid overhead irrigation"
+        ],
+        "treatment": [
+            "Apply fungicides at first sign of disease",
+            "Time applications before tasseling",
+            "Monitor disease progression",
+            "Maintain plant health",
+            "Document resistant varieties for future seasons"
+        ]
+    },
+    "strawberry_leaf_scorch": {
+        "description": "Leaf scorch, caused by Diplocarpon earliana, produces purple to red spots on leaves that eventually develop necrotic centers. Severe infections can reduce fruit yield and quality.",
+        "prevention": [
+            "Plant resistant varieties",
+            "Provide good air circulation",
+            "Avoid overhead irrigation",
+            "Remove old leaves after harvest",
+            "Maintain proper plant spacing"
+        ],
+        "treatment": [
+            "Apply fungicides preventively",
+            "Remove infected leaves",
+            "Improve air circulation",
+            "Reduce moisture on leaves",
+            "Maintain proper fertility"
+        ]
+    },
+    "strawberry_angular_leaf_spot": {
+        "description": "Angular leaf spot, caused by Xanthomonas fragariae, produces water-soaked, angular spots on leaves that become translucent and eventually reddish-brown.",
+        "prevention": [
+            "Use disease-free plants",
+            "Avoid overhead irrigation",
+            "Space plants properly",
+            "Control weeds",
+            "Practice crop rotation"
+        ],
+        "treatment": [
+            "Apply copper-based bactericides",
+            "Remove infected leaves",
+            "Improve air circulation",
+            "Reduce leaf wetness",
+            "Maintain proper nutrition"
+        ]
+    }
+}  

@@ -1,0 +1,24 @@
+{
+    "trained_categories": [
+        "Pepper__bell___Bacterial_spot",
+        "Potato___Early_blight",
+        "Potato___Late_blight",
+        "Tomato_Spider_mites_Two_spotted_spider_mite",
+        "Tomato_healthy"
+    ],
+    "class_mapping": {
+        "0": "Pepper__bell___Bacterial_spot",
+        "1": "Potato___Early_blight",
+        "2": "Potato___Late_blight",
+        "3": "Tomato_Spider_mites_Two_spotted_spider_mite",
+        "4": "Tomato_healthy"
+    },
+    "model_version": "1.0",
+    "image_size": 160,
+    "date_trained": "2025-04-21 21:51:17",
+    "dataset_info": {
+        "total_categories": 16,
+        "used_categories": 5,
+        "percentage_used": 35
+    }
+}

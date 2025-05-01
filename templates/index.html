@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Information Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #28a745;
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+        }
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #218838;
+        }
+        #answer {
+            white-space: pre-line;
+        }
+        .input-group-text {
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        .input-group-text:hover {
+            background-color: #218838;
+        }
+        #imagePreview {
+            max-width: 100%;
+            max-height: 300px;
+            margin: 10px 0;
+            display: none;
+        }
+        .preview-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+        #removeImage {
+            display: none;
+            margin-top: 10px;
+        }
+        .disease-card {
+            margin-top: 20px;
+            display: none;
+        }
+        .disease-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .language-select {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header text-center">
+                <h1>Crop Information Assistant</h1>
+            </div>
+            <div class="card-body">
+                <!-- Language Selection -->
+                <div class="language-select">
+                    <label for="language-select" class="form-label">Select Language / भाषा चुनें:</label>
+                    <select id="language-select" class="form-select">
+                        <option value="en-US">English</option>
+                        <option value="hi-IN">Hindi</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" id="query-label">Ask about crops or upload an image for disease detection:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="query" placeholder="e.g., What is the ideal temperature for rice?">
+                        <button class="btn btn-outline-secondary" type="button" id="micButton">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <span class="input-group-text" onclick="document.getElementById('imageInput').click()">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                    </div>
+                    <input type="file" id="imageInput" accept="image/*" style="display: none">
+                </div>
+                
+                <div class="preview-container">
+                    <img id="imagePreview" class="img-fluid rounded" alt="Preview">
+                    <button id="removeImage" class="btn btn-danger btn-sm">Remove Image</button>
+                </div>
+
+                <button class="btn btn-primary w-100" onclick="handleSubmission()">Get Answer</button>
+
+                <div class="mt-4">
+                    <h5 id="answer-label">Answer:</h5>
+                    <div id="answer" class="p-3 bg-light rounded"></div>
+                </div>
+
+                <div class="disease-card card" id="diseaseInfo">
+                    <div class="card-body">
+                        <h5 class="card-title" id="diseaseName"></h5>
+                        <p class="card-text" id="diseaseDescription"></p>
+                        <h6 id="prevention-label">Prevention:</h6>
+                        <ul id="preventionList"></ul>
+                        <h6 id="treatment-label">Treatment:</h6>
+                        <ul id="treatmentList"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const removeImageBtn = document.getElementById('removeImage');
+        const languageSelect = document.getElementById('language-select');
+        const micButton = document.getElementById('micButton');
+        let currentImage = null;
+        let isRecording = false;
+
+        // UI translations
+        const translations = {
+            'en-US': {
+                'query-label': 'Ask about crops or upload an image for disease detection:',
+                'answer-label': 'Answer:',
+                'prevention-label': 'Prevention:',
+                'treatment-label': 'Treatment:',
+                'remove-image': 'Remove Image',
+                'get-answer': 'Get Answer',
+                'loading': 'Loading...',
+                'error': 'An error occurred. Please try again.',
+                'no-input': 'Please enter a question or upload an image.',
+                'mic-start': 'Start Recording',
+                'mic-stop': 'Stop Recording',
+                'mic-error': 'Error with microphone. Please check your microphone settings.',
+                'mic-no-support': 'Your browser does not support voice input. Please use a supported browser.'
+            },
+            'hi-IN': {
+                'query-label': 'फसलों के बारे में पूछें या रोग पहचान के लिए छवि अपलोड करें:',
+                'answer-label': 'उत्तर:',
+                'prevention-label': 'रोकथाम:',
+                'treatment-label': 'उपचार:',
+                'remove-image': 'छवि हटाएं',
+                'get-answer': 'उत्तर प्राप्त करें',
+                'loading': 'लोड हो रहा है...',
+                'error': 'एक त्रुटि हुई। कृपया पुनः प्रयास करें।',
+                'no-input': 'कृपया एक प्रश्न दर्ज करें या छवि अपलोड करें।',
+                'mic-start': 'रिकॉर्डिंग शुरू करें',
+                'mic-stop': 'रिकॉर्डिंग बंद करें',
+                'mic-error': 'माइक्रोफोन में त्रुटि। कृपया अपनी माइक्रोफोन सेटिंग्स जांचें।',
+                'mic-no-support': 'आपका ब्राउज़र वॉइस इनपुट का समर्थन नहीं करता है। कृपया समर्थित ब्राउज़र का उपयोग करें।'
+            }
+        };
+
+        // Initialize speech recognition
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition = null;
+
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+        }
+
+        // Handle microphone button click
+        micButton.addEventListener('click', function() {
+            if (!recognition) {
+                alert(translations[languageSelect.value]['mic-no-support']);
+                return;
+            }
+
+            if (!isRecording) {
+                // Start recording
+                recognition.lang = languageSelect.value;
+                recognition.start();
+                isRecording = true;
+                micButton.innerHTML = '<i class="fas fa-stop"></i>';
+                micButton.title = translations[languageSelect.value]['mic-stop'];
+            } else {
+                // Stop recording
+                recognition.stop();
+                isRecording = false;
+                micButton.innerHTML = '<i class="fas fa-microphone"></i>';
+                micButton.title = translations[languageSelect.value]['mic-start'];
+            }
+        });
+
+        // Handle speech recognition results
+        if (recognition) {
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('query').value = transcript;
+                isRecording = false;
+                micButton.innerHTML = '<i class="fas fa-microphone"></i>';
+                micButton.title = translations[languageSelect.value]['mic-start'];
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error:', event.error);
+                isRecording = false;
+                micButton.innerHTML = '<i class="fas fa-microphone"></i>';
+                micButton.title = translations[languageSelect.value]['mic-start'];
+                alert(translations[languageSelect.value]['mic-error']);
+            };
+
+            recognition.onend = function() {
+                isRecording = false;
+                micButton.innerHTML = '<i class="fas fa-microphone"></i>';
+                micButton.title = translations[languageSelect.value]['mic-start'];
+            };
+        }
+
+        // Update UI based on selected language
+        function updateUILanguage() {
+            const lang = languageSelect.value;
+            document.getElementById('query-label').textContent = translations[lang]['query-label'];
+            document.getElementById('answer-label').textContent = translations[lang]['answer-label'];
+            document.getElementById('prevention-label').textContent = translations[lang]['prevention-label'];
+            document.getElementById('treatment-label').textContent = translations[lang]['treatment-label'];
+            document.getElementById('removeImage').textContent = translations[lang]['remove-image'];
+            document.querySelector('.btn-primary').textContent = translations[lang]['get-answer'];
+            micButton.title = translations[lang]['mic-start'];
+        }
+
+        // Initialize UI language
+        updateUILanguage();
+
+        // Update UI when language changes
+        languageSelect.addEventListener('change', updateUILanguage);
+
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                currentImage = file;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                    removeImageBtn.style.display = 'inline-block';
+                }
+                reader.readAsDataURL(file);
+                document.getElementById('query').value = '';
+            }
+        });
+
+        removeImageBtn.addEventListener('click', function() {
+            imagePreview.style.display = 'none';
+            removeImageBtn.style.display = 'none';
+            imageInput.value = '';
+            currentImage = null;
+            document.getElementById('diseaseInfo').style.display = 'none';
+        });
+
+        function handleSubmission() {
+            const query = document.getElementById('query').value;
+            const answerDiv = document.getElementById('answer');
+            const diseaseInfo = document.getElementById('diseaseInfo');
+            const language = languageSelect.value;
+            
+            if (!query && !currentImage) {
+                answerDiv.textContent = translations[language]['no-input'];
+                return;
+            }
+
+            answerDiv.textContent = translations[language]['loading'];
+            diseaseInfo.style.display = 'none';
+
+            if (currentImage) {
+                // Handle image upload
+                const formData = new FormData();
+                formData.append('image', currentImage);
+                formData.append('language', language);
+
+                fetch('/analyze_image', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        answerDiv.textContent = data.error;
+                    } else {
+                        answerDiv.textContent = '';
+                        displayDiseaseInfo(data);
+                    }
+                })
+                .catch(error => {
+                    answerDiv.textContent = translations[language]['error'];
+                    console.error('Error:', error);
+                });
+            } else {
+                // Handle text query
+                fetch('/query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        query: query,
+                        language: language
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        answerDiv.textContent = data.error;
+                    } else {
+                        answerDiv.textContent = data.answer;
+                    }
+                })
+                .catch(error => {
+                    answerDiv.textContent = translations[language]['error'];
+                    console.error('Error:', error);
+                });
+            }
+        }
+
+        function displayDiseaseInfo(data) {
+            const diseaseInfo = document.getElementById('diseaseInfo');
+            const diseaseName = document.getElementById('diseaseName');
+            const diseaseDescription = document.getElementById('diseaseDescription');
+            const preventionList = document.getElementById('preventionList');
+            const treatmentList = document.getElementById('treatmentList');
+
+            diseaseName.textContent = data.disease_name;
+            diseaseDescription.textContent = data.description;
+
+            // Clear existing lists
+            preventionList.innerHTML = '';
+            treatmentList.innerHTML = '';
+
+            // Add prevention steps
+            data.prevention.forEach(step => {
+                const li = document.createElement('li');
+                li.textContent = step;
+                preventionList.appendChild(li);
+            });
+
+            // Add treatment steps
+            data.treatment.forEach(step => {
+                const li = document.createElement('li');
+                li.textContent = step;
+                treatmentList.appendChild(li);
+            });
+
+            diseaseInfo.style.display = 'block';
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('query').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleSubmission();
+            }
+        });
+    </script>
+</body>
+</html> 

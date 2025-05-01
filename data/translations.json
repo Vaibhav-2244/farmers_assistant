@@ -1,0 +1,20 @@
+{
+    "hi": {
+        "No information available for": "इस बीमारी के लिए कोई जानकारी उपलब्ध नहीं है",
+        "No prevention information available": "कोई रोकथाम जानकारी उपलब्ध नहीं है",
+        "No treatment information available": "कोई उपचार जानकारी उपलब्ध नहीं है",
+        "Failed to analyze the image": "छवि का विश्लेषण करने में विफल",
+        "Failed to process the image": "छवि को प्रोसेस करने में विफल",
+        "Error loading required files": "आवश्यक फ़ाइलें लोड करने में त्रुटि",
+        "Error preprocessing image": "छवि प्रीप्रोसेसिंग में त्रुटि",
+        "Error in disease prediction": "रोग भविष्यवाणी में त्रुटि",
+        "Error getting weather data": "मौसम डेटा प्राप्त करने में त्रुटि",
+        "Temperature": "तापमान",
+        "Humidity": "आर्द्रता",
+        "Wind Speed": "हवा की गति",
+        "Weather Description": "मौसम का विवरण",
+        "Celsius": "सेल्सियस",
+        "Percent": "प्रतिशत",
+        "Meters per second": "मीटर प्रति सेकंड"
+    }
+} 

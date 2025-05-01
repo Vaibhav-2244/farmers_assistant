@@ -1,0 +1,14 @@
+Trained Categories Summary
+========================
+
+Total Categories in Dataset: 16
+Categories Used for Training: 5
+Percentage Used: 35%
+
+Selected Categories:
+-------------------
+1. Pepper__bell___Bacterial_spot
+2. Potato___Early_blight
+3. Potato___Late_blight
+4. Tomato_Spider_mites_Two_spotted_spider_mite
+5. Tomato_healthy

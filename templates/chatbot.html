@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmers' Assistant</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-success text-white">
+                        <h1 class="text-center mb-0">Farmers' Assistant</h1>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-center text-muted mb-4">Ask me about crop requirements and farming conditions. I can tell you about:</p>
+                        <div class="example-questions mb-4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="text-muted small">Temperature:</p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-arrow-right text-success me-2"></i>What temperature is required for wheat?</li>
+                                        <li><i class="fas fa-arrow-right text-success me-2"></i>What is the ideal temperature for rice?</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="text-muted small">Rainfall:</p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-arrow-right text-success me-2"></i>How much rainfall does maize need?</li>
+                                        <li><i class="fas fa-arrow-right text-success me-2"></i>What is the rainfall requirement for cotton?</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <p class="text-muted small">Soil Conditions:</p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-arrow-right text-success me-2"></i>What pH is required for growing wheat?</li>
+                                        <li><i class="fas fa-arrow-right text-success me-2"></i>How much nitrogen does rice need?</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="text-muted small">Humidity:</p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-arrow-right text-success me-2"></i>What humidity is best for growing maize?</li>
+                                        <li><i class="fas fa-arrow-right text-success me-2"></i>What is the ideal humidity for cotton?</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Language Selection -->
+                        <div class="mb-3">
+                            <label for="language-select" class="form-label">Select Language:</label>
+                            <select id="language-select" class="form-select">
+                                <option value="en-US">English</option>
+                                <option value="hi-IN">Hindi</option>
+                            </select>
+                        </div>
+
+                        <!-- Text and Voice Input Section -->
+                        <div class="input-group mb-3">
+                            <input type="text" id="query-input" class="form-control" placeholder="Type or speak your question here...">
+                            <button id="mic-button" class="btn btn-outline-secondary" type="button">
+                                <i class="fa fa-microphone"></i>
+                            </button>
+                            <button id="submit-button" class="btn btn-success" type="button">Ask</button>
+                        </div>
+
+                        <!-- Response Section -->
+                        <div class="response-container mt-4">
+                            <div id="response" class="alert alert-info" role="alert">
+                                Your answer will appear here...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const micButton = document.getElementById("mic-button");
+        const submitButton = document.getElementById("submit-button");
+        const queryInput = document.getElementById("query-input");
+        const responseDiv = document.getElementById("response");
+        const languageSelect = document.getElementById("language-select");
+
+        // Handle voice input
+        micButton.addEventListener("click", () => {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert("Your browser does not support voice input. Please use a supported browser.");
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+            recognition.lang = languageSelect.value;
+            recognition.interimResults = false;
+            recognition.continuous = false;
+
+            recognition.start();
+            micButton.classList.add("btn-danger");
+            micButton.innerHTML = '<i class="fa fa-microphone-slash"></i>';
+
+            recognition.onresult = (event) => {
+                const spokenText = event.results[0][0].transcript;
+                queryInput.value = spokenText;
+                micButton.classList.remove("btn-danger");
+                micButton.innerHTML = '<i class="fa fa-microphone"></i>';
+            };
+
+            recognition.onerror = (event) => {
+                console.error("Speech recognition error:", event.error);
+                micButton.classList.remove("btn-danger");
+                micButton.innerHTML = '<i class="fa fa-microphone"></i>';
+                
+                if (event.error === "no-speech") {
+                    alert("No speech detected. Please try speaking again.");
+                } else if (event.error === "audio-capture") {
+                    alert("No microphone detected. Please check your microphone settings.");
+                } else {
+                    alert("An error occurred: " + event.error);
+                }
+            };
+
+            recognition.onspeechend = () => {
+                recognition.stop();
+            };
+        });
+
+        // Handle query submission
+        submitButton.addEventListener("click", () => {
+            const question = queryInput.value.trim();
+            const language = languageSelect.value;
+            
+            if (!question) {
+                responseDiv.textContent = "Please enter or speak a question.";
+                responseDiv.className = "alert alert-warning";
+                return;
+            }
+
+            responseDiv.textContent = "Processing...";
+            responseDiv.className = "alert alert-info";
+            
+            fetch("/query", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ question: question, language: language }),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                responseDiv.textContent = data.answer;
+                responseDiv.className = "alert alert-success";
+            })
+            .catch((error) => {
+                responseDiv.textContent = "Error: " + error.message;
+                responseDiv.className = "alert alert-danger";
+            });
+        });
+
+        // Handle Enter key press
+        queryInput.addEventListener("keypress", (event) => {
+            if (event.key === "Enter") {
+                submitButton.click();
+            }
+        });
+    </script>
+</body>
+</html>
